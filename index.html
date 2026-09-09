@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="可拖拽旋转、持续流动、响应鼠标吸引与排斥的三维粒子照片。">
+  <title>流动的记忆 · Lizi</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+<div id="particle-photo-studio" aria-label="三维粒子照片体验">
+  <header class="ps-header">
+    <div class="ps-brand"><span class="ps-eyebrow">MEMORY IN MOTION</span><span class="ps-name">流动的记忆</span></div>
+    <div class="ps-actions">
+      <button type="button" id="ps-upload">更换照片</button>
+      <button type="button" id="ps-play" aria-pressed="false">暂停流动</button>
+      <button type="button" id="ps-panel-button" aria-expanded="true" aria-controls="ps-panel">参数</button>
+    </div>
+    <input type="file" id="ps-file" accept="image/*" hidden>
+  </header>
+  <div class="ps-layout">
+    <div class="ps-stage">
+      <canvas id="ps-canvas" role="img" aria-label="持续流动的三维照片粒子。悬停可吸引并排斥粒子，按住拖拽旋转，滚轮缩放。也可使用下方视角按钮。">浏览器需要支持 WebGL 才能展示三维粒子。</canvas>
+      <div class="ps-caption"><span id="ps-image-name">视频中的圣诞记忆</span><span class="ps-live" id="ps-motion-label">持续流动</span></div>
+      <div class="ps-cursor" hidden></div>
+      <div class="ps-stage-bottom">
+        <div class="ps-view-buttons" aria-label="调整三维视角">
+          <button type="button" data-view="left" aria-label="向左旋转视角">左转</button>
+          <button type="button" data-view="right" aria-label="向右旋转视角">右转</button>
+          <button type="button" data-view="tilt" aria-label="切换俯视角度">俯视</button>
+          <button type="button" data-view="front" aria-label="恢复正面视角">正面</button>
+        </div>
+        <span class="ps-gesture">移动牵引 · 按住拖拽旋转 · 滚轮缩放</span>
+      </div>
+      <div id="ps-error" role="alert" hidden></div>
+    </div>
+    <aside id="ps-panel" aria-label="效果参数面板">
+      <div class="ps-panel-title"><span>效果参数</span><button type="button" id="ps-reset">恢复默认</button></div>
+      <label class="ps-preset-label" for="ps-preset">起始风格</label>
+      <select id="ps-preset"><option value="clear">清晰流动</option><option value="silk">柔软薄纱</option><option value="vortex">强烈牵引</option></select>
+      <div class="ps-tabs" role="tablist" aria-label="参数分类">
+        <button type="button" role="tab" id="ps-tab-image" aria-selected="true" aria-controls="ps-image-controls" data-tab="image">画面</button>
+        <button type="button" role="tab" id="ps-tab-motion" aria-selected="false" aria-controls="ps-motion-controls" data-tab="motion">动态</button>
+        <button type="button" role="tab" id="ps-tab-pointer" aria-selected="false" aria-controls="ps-pointer-controls" data-tab="pointer">鼠标</button>
+      </div>
+      <div id="ps-image-controls" role="tabpanel" aria-labelledby="ps-tab-image" class="ps-controls"></div>
+      <div id="ps-motion-controls" role="tabpanel" aria-labelledby="ps-tab-motion" class="ps-controls" hidden></div>
+      <div id="ps-pointer-controls" role="tabpanel" aria-labelledby="ps-tab-pointer" class="ps-controls" hidden></div>
+      <div class="ps-panel-note" id="ps-panel-note">保留主体细节，让颗粒感集中在边缘。</div>
+      <div class="ps-interaction-legend"><span>外圈吸引</span><span>内圈排斥</span><span>拖拽旋转</span></div>
+    </aside>
+  </div>
+  <div class="ps-status" id="ps-status" aria-live="polite">示例取自视频画面，可更换为自己的原始照片。</div>
+  <img id="ps-source" src="assets/demo-photo.jpg" alt="视频中的圣诞树照片局部" hidden>
+</div>
+</body>
+</html>

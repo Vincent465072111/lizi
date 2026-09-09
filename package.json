@@ -1,0 +1,14 @@
+{
+  "name": "lizi-particle-memory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interactive 3D particle photo with flow deformation and pointer forces",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "dev": "node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
